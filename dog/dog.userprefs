@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_kina/Scripts/MapTest.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GenerateItem.cs">
     <Files>
-      <File FileName="Assets/_kina/Scripts/MapTest.cs" Line="34" Column="65" />
+      <File FileName="Assets\GenerateItem.cs" Line="8" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
