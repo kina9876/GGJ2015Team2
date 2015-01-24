@@ -34,7 +34,7 @@ public class MapTest : MonoBehaviour {
 		GameObject player = GameObject.FindWithTag(playerTag);
 		playerObj = player;
 		Vector3 boxPos = boxs[0].transform.position;
-		playerObj.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
+		//playerObj.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
 	}
 	
 	// Update is called once per frame

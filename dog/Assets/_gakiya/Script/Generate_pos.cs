@@ -21,10 +21,15 @@ public class Generate_pos : MonoBehaviour {
 					if(hit.collider.gameObject.tag == "ground"){
 						/* Let's generate a meat */
 						GameObject.Find("GameController").SendMessage("InstanceItem", instancePos);
+					} else {
+						Debug.Log ("not ground" );
 					}
+				} else {
+					Debug.Log ("didn't hit a ray");
 				}
 			} else {
-				Debug.Log("x = "  + posX + " / " + "z = " + posZ);
+				Debug.Log("Out of field" + "\n" + 
+				          "x = "  + posX + " / " + "z = " + posZ);
 			}
 		}
 
