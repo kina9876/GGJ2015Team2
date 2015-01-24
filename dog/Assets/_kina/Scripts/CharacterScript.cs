@@ -13,36 +13,46 @@ public class CharacterScript : MonoBehaviour {
 	public Vector3[] vectols;
 	public bool isMale;
 
+
 	// Use this for initialization
 	void Start () {
 		vectols = new Vector3[4];
+
 	}
 
 	void Update () {
 		Vector3 charaForward = transform.forward;
 		Vector3 charaRight = transform.right;
-		forward = transform.position + charaForward * 10;
-		back = transform.position - charaForward * 10; 
-		right = transform.position + charaRight * 10;
-		left = transform.position - charaRight * 10;
+		Vector3 ModificationPos = new Vector3(transform.position.x,transform.position.y + 1,transform.position.z);
+//		forward = ModificationPos + charaForward * 10;
+//		back = ModificationPos - charaForward * 10; 
+//		right = ModificationPos + charaRight * 10;
+//		left = ModificationPos - charaRight * 10;
+		forward = transform.forward;
+		back = transform.forward * -1;
+		right = transform.right;
+		left = transform.right * -1;
 		vectols[0] = forward;
 		vectols[1] = back;
 		vectols[2] = right;
 		vectols[3] = left;
 		//DrawLines.
-		Debug.DrawLine(transform.position,vectols[0],Color.red);
-		Debug.DrawLine(transform.position,vectols[1],Color.green);
-		Debug.DrawLine(transform.position,vectols[2],Color.blue);
-		Debug.DrawLine(transform.position,vectols[3],Color.cyan); 
-		checkRay();
+//		Debug.DrawLine(transform.position,vectols[0],Color.red);
+//		Debug.DrawLine(transform.position,vectols[1],Color.green);
+//		Debug.DrawLine(transform.position,vectols[2],Color.blue);
+//		Debug.DrawLine(transform.position,vectols[3],Color.cyan); 
+		checkRay(); 
 	}
 
 	void checkRay()
 	{    
 		for (int i = 0; i < vectols.Length; i++) {
-			Ray ray = new Ray(transform.position,vectols[i]);
+			Vector3 plusYPos = transform.position + new Vector3(0,1,0);
+			Ray ray = new Ray(plusYPos,vectols[i]);
 			RaycastHit hit;
-			if (Physics.Raycast(ray,out hit)) {
+			Debug.DrawLine(plusYPos,vectols[i]);
+			if (Physics.Raycast(ray,out hit,Mathf.Infinity)) {
+				Debug.Log("hit " + hit.transform.name);
 				if (isMale) {
 					maleMove(hit.transform);
 				} else {
@@ -54,21 +64,30 @@ public class CharacterScript : MonoBehaviour {
 
 	void maleMove(Transform hitObj)
 	{
-		if (hitObj.tag == Const.MALE_FOOD) {
-			Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
-			iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
-		} else if (hitObj.tag == Const.FEMALE_FOOD) {
+		if (hitObj.tag == Const.FOOD_TAG) {
+			if (hitObj.GetComponent<FoodScript>().isMalefood) {
+				//MoveFood.
+				Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
+				iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
+			} else {
+				// Escape.
 
-		}
+			}
+		} 
 	}
 
 	void femaleMove(Transform hitObj)
 	{
-		if (hitObj.tag == Const.FEMALE_FOOD) {
+		if (hitObj.tag == Const.FOOD_TAG) {
+			if (hitObj.GetComponent<FoodScript>().isMalefood) {
+				//Escape.
 
-		} else if (hitObj.tag == Const.MALE_FOOD) {
-
-		}
+			} else {
+				//MoveFood.
+				Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
+				iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
+			}
+		} 
 	}
 
 	void characterMove(Vector3 pos)

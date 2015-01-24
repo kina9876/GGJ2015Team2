@@ -14,6 +14,8 @@ public class MapTest : MonoBehaviour {
 	public GameObject femalePlayer;
 	public float moveTime;
 	public int[] walls;
+	public GameObject food;
+	public GameObject[] houses;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +39,14 @@ public class MapTest : MonoBehaviour {
 		Vector3 boxPos = boxs[0].transform.position;
 		malePlayer.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
 
+		houses = new GameObject[4];
+		for (int i = 0; i < houses.Length;i++) {
+			houses[i] = Resources.Load(Const.HOUSE_NAME + (i+1)) as GameObject;
+		}
+
 		for (int w = 0; w < walls.Length; w++) {
-			GameObject wall = Instantiate(Resources.Load(Const.WALL_PATH))as GameObject;
+			int num = Random.Range(0,houses.Length);
+			GameObject wall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
 			Vector3 wallPos = boxs[walls[w]].transform.position;
 			wallPos = new Vector3(wallPos.x,1,wallPos.z);
 			wall.transform.position = wallPos;
@@ -56,7 +64,7 @@ public class MapTest : MonoBehaviour {
 			{
 /*				malePlayer.GetComponent<CharacterScript>()*/
 				Vector3 newPos = new Vector3(hit.transform.position.x,1,hit.transform.position.z); 
-
+				GameObject obj = Instantiate(food,newPos,Quaternion.identity) as GameObject;
 			}
 		}
 	}

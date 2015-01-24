@@ -10,3 +10,8 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+dog/Assembly-CSharp-vs.csproj
+dog/Assembly-CSharp.csproj
+dog/dog-csharp.sln
+dog/dog.sln
+dog/dog.userprefs
