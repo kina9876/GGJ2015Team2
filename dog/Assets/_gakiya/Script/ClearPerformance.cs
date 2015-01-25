@@ -3,11 +3,14 @@ using System.Collections;
 
 public class ClearPerformance : MonoBehaviour {
 	public GameObject ClearPlane;
+	public AudioClip clearSE;
+	AudioSource audioSource;
 	private bool clearFlg;
-
+	
 	void Start(){
 		clearFlg = false;
 		ClearPlane.SetActive (false);
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update(){
@@ -18,6 +21,8 @@ public class ClearPerformance : MonoBehaviour {
 
 	void Clear(){
 		clearFlg = true;
+		audioSource.clip = clearSE;
+		audioSource.Play ();
 	}
 
 	void NextStage(){
