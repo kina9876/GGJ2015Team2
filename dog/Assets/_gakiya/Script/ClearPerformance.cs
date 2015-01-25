@@ -27,11 +27,11 @@ public class ClearPerformance : MonoBehaviour {
 
 	void Retry(){
 		Debug.Log ("Try Again for Now Stage");
-	//	Application.LoadLevel (Application.loadedLevel);
+		Application.LoadLevel (Application.loadedLevel);
 	}
 
 	void GoToTitle(){
 		Debug.Log ("Go → Title");
-	//	Application.LoadLevel (0);
+		Application.LoadLevel (0);
 	}
 }
