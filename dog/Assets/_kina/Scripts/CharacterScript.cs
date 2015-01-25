@@ -73,7 +73,9 @@ public class CharacterScript : MonoBehaviour {
 			} else {
 				// Escape.
 				Vector3 escapeVec = checkEscapeVectol(targetPos);
-				//iTween.LookTo(gameObject,iTween.Hash("looktarget",-targetPos,"time",0.5f,"easetype",iTween.EaseType.linear,"oncomplete","characterEscape","oncompleteparams",targetPos));
+				escapeVec = new Vector3(escapeVec.x,1,escapeVec.z);
+				Debug.Log ("escapeVec" + escapeVec);
+				iTween.LookTo(gameObject,iTween.Hash("looktarget",escapeVec,"time",0.5f,"oncomplete","characterEscape","oncompleteparams",escapeVec));
 			}
 		} 
 	}
@@ -99,14 +101,40 @@ public class CharacterScript : MonoBehaviour {
 
 	void characterEscape(Vector3 pos)
 	{
+		pos = pos;
 		iTween.MoveTo(gameObject,iTween.Hash("position",-pos,"speed",5,"easetype",iTween.EaseType.linear));
 	} 
 
-	Vector3 checkEscapeVectol(Vector3 targetPos)
-	{
-		Vector3 checkVec = transform.position - targetPos;
-		Debug.Log(checkVec);
-		return checkVec;
+	void OnTriggerEnter(Collider col) {
+		if (col.tag == Const.WALL_TAG) {
+			iTween.Stop();
+		}
 	}
 
+	Vector3 checkEscapeVectol(Vector3 targetPos)
+	{
+		float x = Mathf.Abs(transform.position.x) - Mathf.Abs(targetPos.x);
+		float z = Mathf.Abs(transform.position.z) - Mathf.Abs(targetPos.z);
+		Vector3 escapeVec = Vector3.zero;
+		if (x != 0) {
+			//X.
+			if (transform.position.x < targetPos.x) {
+				//LeftEscape
+				escapeVec = Vector3.left;
+			} else {
+				//RIghtEscape
+				escapeVec = Vector2.right;
+			}
+		} else if (z != 0) {
+			//Z.
+			if (transform.position.z < targetPos.z) {
+				//DownEsxape.
+				escapeVec = Vector3.down;
+			} else {
+				//TopEscape.
+				escapeVec = Vector3.forward;
+			}
+		}
+		return escapeVec;
+	}
 }

@@ -97,9 +97,9 @@ public class MapTest : MonoBehaviour {
 					insMaleFood.transform.position = newPos;	
 				} else {
 					if (insFemaleFood == null) {
-//						insFemaleFood = Instantiate(femaleFood) as GameObject;
+						insFemaleFood = Instantiate(femaleFood) as GameObject;
 					}
-//					insFemaleFood.transform.position = newPos;
+					insFemaleFood.transform.position = newPos;
 				}
 
 			}
