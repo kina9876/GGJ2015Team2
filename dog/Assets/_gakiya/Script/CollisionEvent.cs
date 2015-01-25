@@ -5,19 +5,20 @@ public class CollisionEvent : MonoBehaviour {
 
 	void Start(){
 		clearManager = GameObject.Find ("ClearManager");
+		Time.timeScale = 1;
 	}
 	
 	void OnTriggerEnter(Collider col){
-		Debug.Log ("collision");
+		Debug.Log ("collision  " + col.tag);
 
 		if( col.gameObject.tag == "food"){
 			Debug.Log("food!");
 			col.gameObject.SendMessage("ActiveFalse");
 		}
-		if( col.gameObject.tag == "goal"){
+		if( col.gameObject.tag == "Player"){
 			Debug.Log("Congratulation!!");
 			iTween.Stop ();
-
+			Time.timeScale = 0;
 			// Animation
 			// col.gameObject.Animation
 
@@ -28,5 +29,6 @@ public class CollisionEvent : MonoBehaviour {
 			//iTween.Stop();
 			transform.SendMessage("endRun");
 		}
+
 	}
 }

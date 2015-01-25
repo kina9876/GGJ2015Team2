@@ -19,6 +19,7 @@ public class MapTest : MonoBehaviour {
 	public GameObject insMaleFood;
 	public GameObject insFemaleFood;
 	public bool maleFlag;
+	public int maleStart,femaleStart;
 
 	// Use this for initialization
 	void Start () {
@@ -64,9 +65,9 @@ public class MapTest : MonoBehaviour {
 		}
 //		GameObject player = GameObject.FindWithTag(playerTag);
 //		malePlayer = player;
-		Vector3 boxPos = boxs[0].transform.position;
+		Vector3 boxPos = boxs[maleStart].transform.position;
 		malePlayer.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
-		Vector3 femalePos = boxs[16].transform.position;
+		Vector3 femalePos = boxs[femaleStart].transform.position;
 		femalePlayer.transform.position = new Vector3(femalePos.x,1,femalePos.z);
 
 

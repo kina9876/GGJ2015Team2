@@ -40,7 +40,7 @@ public class TitleScript : MonoBehaviour {
 
 	void gameStart()
 	{
-		Application.LoadLevel("kinaTestScene");
+		Application.LoadLevel(1);
 	}
 
 

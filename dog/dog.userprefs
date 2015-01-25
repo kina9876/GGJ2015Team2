@@ -1,16 +1,30 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_gakiya\Script\Generate_pos.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_kina/Scripts/CharacterAnimationController.cs">
     <Files>
-      <File FileName="Assets\_gakiya\Script\CollisionEvent.cs" Line="10" Column="1" />
-      <File FileName="Assets\_gakiya\Script\Animations.cs" Line="5" Column="20" />
-      <File FileName="Assets\_kina\Scripts\MapTest.cs" Line="115" Column="1" />
-      <File FileName="Assets\_kina\Scripts\CharacterScript.cs" Line="54" Column="1" />
-      <File FileName="Assets\_gakiya\Script\GenerateItem.cs" Line="1" Column="1" />
-      <File FileName="Assets\_gakiya\Script\ActiveChange.cs" Line="8" Column="1" />
-      <File FileName="Assets\_gakiya\Script\FoodManagement.cs" Line="1" Column="1" />
-      <File FileName="Assets\_gakiya\Script\Generate_pos.cs" Line="15" Column="45" />
+      <File FileName="Assets/_kina/Scripts/MapTest.cs" Line="93" Column="60" />
+      <File FileName="Assets/_kina/Scripts/CharacterScript.cs" Line="159" Column="17" />
+      <File FileName="Assets/_kina/Scripts/Const.cs" Line="1" Column="1" />
+      <File FileName="Assets/_kina/Scripts/CharacterAnimationController.cs" Line="29" Column="4" />
+      <File FileName="Assets/_gakiya/Script/ActiveChange.cs" Line="6" Column="18" />
+      <File FileName="Assets/_gakiya/Script/CollisionEvent.cs" Line="29" Column="36" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="_gakiya" expanded="True">
+              <Node name="Script" expanded="True" />
+            </Node>
+            <Node name="_kina" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="CharacterAnimationController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

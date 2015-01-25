@@ -12,7 +12,7 @@ public class CharacterScript : MonoBehaviour {
 	public float moveTime;
 	public Vector3[] vectols;
 	public bool isMale;
-	public bool escapeFlag;
+	bool escapeFlag = true;
 
 	public CharacterAnimationController _animationController;
 
