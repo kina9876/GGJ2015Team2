@@ -14,9 +14,11 @@ public class MapTest : MonoBehaviour {
 	public GameObject femalePlayer;
 	public float moveTime;
 	public int[] walls;
-	public GameObject food;
+	public GameObject maleFood,femaleFood;
 	public GameObject[] houses;
-	public GameObject insFood;
+	public GameObject insMaleFood;
+	public GameObject insFemaleFood;
+	public bool maleFlag;
 
 	// Use this for initialization
 	void Start () {
@@ -44,14 +46,16 @@ public class MapTest : MonoBehaviour {
 		int surWallCount = (tileCount * (tileCount + 1)) + 4;
 		Debug.Log("wall : " + surWallCount);
 		for (int w = 0; w < tileCount; w++) {
-			GameObject underWall = Instantiate(houses[0]) as GameObject;
-			GameObject topWall = Instantiate(houses[0]) as GameObject;
-			GameObject leftWall = Instantiate(houses[0]) as GameObject;
-			GameObject rightWall = Instantiate(houses[0]) as GameObject;
+			GameObject underWall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
+			GameObject topWall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
+			GameObject leftWall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
+			GameObject rightWall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
+
 			underWall.transform.position = boxs[0].transform.position + new Vector3(w,0.5f,-1);
 			topWall.transform.position = boxs[tileCount -1].transform.position + new Vector3(w,0.5f,1);
 			leftWall.transform.position = boxs[0].transform.position + new Vector3(-1,0.5f,w);
 			rightWall.transform.position = boxs[boxs.Length - 1].transform.position + new Vector3 (1,0.5f,-w);
+
 			underWall.transform.parent = stage.transform;
 			topWall.transform.parent = stage.transform;
 			leftWall.transform.parent = stage.transform;
@@ -84,11 +88,20 @@ public class MapTest : MonoBehaviour {
 			if(Physics.Raycast(ray,out hit))
 			{
 /*				malePlayer.GetComponent<CharacterScript>()*/
+
 				Vector3 newPos = new Vector3(hit.transform.position.x,2,hit.transform.position.z); 
-				if (insFood == null) {
-					insFood = Instantiate(food) as GameObject;
+				if (maleFlag){
+					if (insMaleFood == null) {
+						insMaleFood = Instantiate(maleFood) as GameObject;
+					}
+					insMaleFood.transform.position = newPos;	
+				} else {
+					if (insFemaleFood == null) {
+						insFemaleFood = Instantiate(femaleFood) as GameObject;
+					}
+					insFemaleFood.transform.position = newPos;
 				}
-				insFood.transform.position = newPos;
+
 			}
 		}
 	}
