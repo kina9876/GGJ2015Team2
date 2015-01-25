@@ -6,15 +6,14 @@ public class CollisionEvent : MonoBehaviour {
 	void Start(){
 		clearManager = GameObject.Find ("ClearManager");
 	}
-
-	void OnCollisionEnter(Collision col){
+	
+	void OnTriggerEnter(Collider col){
 		Debug.Log ("collision");
+
 		if( col.gameObject.tag == "food"){
 			Debug.Log("food!");
 			col.gameObject.SendMessage("ActiveFalse");
 		}
-	}
-	void OnTriggerEnter(Collider col){
 		if( col.gameObject.tag == "goal"){
 			Debug.Log("Congratulation!!");
 			iTween.Stop ();
