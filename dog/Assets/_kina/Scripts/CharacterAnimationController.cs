@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CharacterAnimationController : MonoBehaviour {
 	Animator animator;
+	//public AudioClip walkSE;
+	public AudioClip voice_eat;
+
 
 	void Awake(){
 		animator = GetComponent<Animator> ();
