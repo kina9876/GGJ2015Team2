@@ -4,7 +4,7 @@ public class CollisionEvent : MonoBehaviour {
 	private GameObject clearManager;
 
 	void Start(){
-		clearManager = GameObject.Find ("StageClear");
+		clearManager = GameObject.Find ("ClearManager");
 	}
 
 	void OnCollisionEnter(Collision col){
