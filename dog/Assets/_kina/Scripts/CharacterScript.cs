@@ -41,6 +41,7 @@ public class CharacterScript : MonoBehaviour {
 		vectols[2] = right;
 		vectols[3] = left;
 		checkRay(); 
+
 	}
 
 	void checkRay()
@@ -160,6 +161,10 @@ public class CharacterScript : MonoBehaviour {
 		_animationController.idle();
 		iTween.Stop();
 		escapeFlag = true;
+	}
+
+	void escapeFoodCheck()
+	{
 	}
 
 }
