@@ -9,7 +9,7 @@ public class TitleScript : MonoBehaviour {
 	public int tileCount;
 	public Vector3 startPosition;
 	public Vector3 floorScale;
-
+	public GameObject Restart;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +30,10 @@ public class TitleScript : MonoBehaviour {
 			}
 		}
 		*/
+		GameObject restartMaster = GameObject.FindWithTag("Restart");
+		if(restartMaster == null) {
+			Instantiate(Restart);
+		}
 	}
 	
 	
