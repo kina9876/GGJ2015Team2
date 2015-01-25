@@ -91,18 +91,18 @@ public class MapTest : MonoBehaviour {
 			{
 /*				malePlayer.GetComponent<CharacterScript>()*/
 
-				Vector3 newPos = new Vector3(hit.transform.position.x,2,hit.transform.position.z); 
-				if (maleFlag){
-					if (insMaleFood == null) {
-						insMaleFood = Instantiate(maleFood) as GameObject;
-					}
-					insMaleFood.transform.position = newPos;	
-				} else {
-					if (insFemaleFood == null) {
-						insFemaleFood = Instantiate(femaleFood) as GameObject;
-					}
-					insFemaleFood.transform.position = newPos;
-				}
+//				Vector3 newPos = new Vector3(hit.transform.position.x,2,hit.transform.position.z); 
+//				if (maleFlag){
+//					if (insMaleFood == null) {
+//						insMaleFood = Instantiate(maleFood) as GameObject;
+//					}
+//					insMaleFood.transform.position = newPos;	
+//				} else {
+//					if (insFemaleFood == null) {
+//						insFemaleFood = Instantiate(femaleFood) as GameObject;
+//					}
+//					insFemaleFood.transform.position = newPos;
+//				}
 
 			}
 		}

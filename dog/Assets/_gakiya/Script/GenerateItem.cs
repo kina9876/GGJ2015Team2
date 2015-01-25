@@ -12,8 +12,12 @@ public class GenerateItem : MonoBehaviour {
 
 
 	void Start(){
-		childA = Instantiate(ItemA, new Vector3(0, -1, 0 ), transform.rotation) as GameObject;
-		childB = Instantiate(ItemB, new Vector3(0, -1, 0 ), transform.rotation) as GameObject;
+		childA = Instantiate(ItemA) as GameObject;
+		childA.transform.position = new Vector3(0, -1, 0 );
+		childB = Instantiate(ItemB) as GameObject;
+		childB.transform.position = new Vector3(0, -1, 0 );
+
+
 	}
 
 	void InstanceItem(Vector3 pos){
