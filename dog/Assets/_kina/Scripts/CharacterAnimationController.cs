@@ -41,4 +41,9 @@ public class CharacterAnimationController : MonoBehaviour {
 		animator.SetTrigger ("Dead");
 	}
 
+	public void escapeSoundPlay()
+	{
+
+	}
+
 }

@@ -71,6 +71,7 @@ public class CharacterScript : MonoBehaviour {
 			} else {
 				// Escape.
 				if(escapeFlag){
+					_animationController.escapeSoundPlay();
 					escapeFlag = false;
 					Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
 					Vector3 escapeVec = checkEscapeVectol(targetPos);
@@ -88,6 +89,7 @@ public class CharacterScript : MonoBehaviour {
 			if (hitObj.GetComponent<FoodScript>().isMalefood) {
 				//Escape.
 				if(escapeFlag){
+					_animationController.escapeSoundPlay();
 					escapeFlag = false;
 					Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
 					Vector3 escapeVec = checkEscapeVectol(targetPos);
