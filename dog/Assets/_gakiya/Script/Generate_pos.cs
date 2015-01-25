@@ -12,7 +12,7 @@ public class Generate_pos : MonoBehaviour {
 			Vector3 mousePos = camera.ScreenToWorldPoint(clickPosition);
 			int posX = (int)Mathf.Round(mousePos.x);
 			int posZ = (int)Mathf.Round(mousePos.z);
-			Vector3 instancePos = new Vector3(posX, 1, posZ);
+			Vector3 instancePos = new Vector3(posX, 2, posZ);
 			if( Mathf.Abs(posX) < 2.5 && Mathf.Abs(posZ) < 2.5){
 				/* placing check */
 				RaycastHit hit;
