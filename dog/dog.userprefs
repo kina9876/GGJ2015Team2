@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Animations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_gakiya\Script\Animations.cs">
     <Files>
       <File FileName="Assets\_gakiya\Script\CollisionEvent.cs" Line="4" Column="34" />
-      <File FileName="Assets\Animations.cs" Line="1" Column="1" />
+      <File FileName="Assets\_gakiya\Script\Animations.cs" Line="6" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
