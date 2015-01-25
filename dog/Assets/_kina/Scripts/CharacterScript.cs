@@ -13,6 +13,7 @@ public class CharacterScript : MonoBehaviour {
 	public Vector3[] vectols;
 	public bool isMale;
 	bool escapeFlag = true;
+	public GameObject hateFood;
 
 	public CharacterAnimationController _animationController;
 
@@ -41,7 +42,7 @@ public class CharacterScript : MonoBehaviour {
 		vectols[2] = right;
 		vectols[3] = left;
 		checkRay(); 
-
+		escapeFoodCheck ();
 	}
 
 	void checkRay()
@@ -72,6 +73,7 @@ public class CharacterScript : MonoBehaviour {
 			} else {
 				// Escape.
 				if(escapeFlag){
+					hateFood = hitObj.gameObject;
 					_animationController.escapeSoundPlay();
 					escapeFlag = false;
 					Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
@@ -90,6 +92,7 @@ public class CharacterScript : MonoBehaviour {
 			if (hitObj.GetComponent<FoodScript>().isMalefood) {
 				//Escape.
 				if(escapeFlag){
+					hateFood = hitObj.gameObject;
 					_animationController.escapeSoundPlay();
 					escapeFlag = false;
 					Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
@@ -159,12 +162,24 @@ public class CharacterScript : MonoBehaviour {
 	void endRun()
 	{
 		_animationController.idle();
+		_animationController.eat();
 		iTween.Stop();
-		escapeFlag = true;
+	}
+
+	void wallTouch()
+	{
+		iTween.Stop();
 	}
 
 	void escapeFoodCheck()
 	{
+		if (hateFood) {
+			if (hateFood.activeSelf) {
+
+			} else {
+				escapeFlag = true;
+			}
+		}
 	}
 
 }

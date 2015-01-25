@@ -27,7 +27,7 @@ public class CollisionEvent : MonoBehaviour {
 
 		if (col.gameObject.tag == Const.WALL_TAG) {
 			//iTween.Stop();
-			transform.SendMessage("endRun");
+			transform.SendMessage("wallTouch");
 		}
 
 	}
