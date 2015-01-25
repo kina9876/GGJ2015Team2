@@ -11,6 +11,7 @@ public class CharacterAnimationController : MonoBehaviour {
 	public void idle()
 	{
 		animator.SetBool ("isWalking", false);
+		animator.SetBool ("SadWalking", false);
 	}
 
 	public void run()
@@ -20,7 +21,7 @@ public class CharacterAnimationController : MonoBehaviour {
 
 	public void escapeRun()
 	{
-		//animator.SetTrigger ("escapeRun");
+		animator.SetBool ("SadWalking", true);
 	}
 
 	public void eat()
@@ -30,7 +31,11 @@ public class CharacterAnimationController : MonoBehaviour {
 
 	public void end()
 	{
-	//	animator.SetTrigger ();
+		animator.SetTrigger ("Clear");
+	}
+
+	public void dead(){
+		animator.SetTrigger ("Dead");
 	}
 
 }
