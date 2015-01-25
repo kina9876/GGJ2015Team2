@@ -12,12 +12,14 @@ public class CharacterScript : MonoBehaviour {
 	public float moveTime;
 	public Vector3[] vectols;
 	public bool isMale;
+	public bool escapeFlag;
 
 	public CharacterAnimationController _animationController;
 
 
 	// Use this for initialization
 	void Start () {
+		_animationController = transform.GetComponent<CharacterAnimationController>();
 		_animationController.idle();
 		vectols = new Vector3[4];
 	}
@@ -54,7 +56,7 @@ public class CharacterScript : MonoBehaviour {
 			RaycastHit hit;
 			Debug.DrawLine(plusYPos,vectols[i]);
 			if (Physics.Raycast(ray,out hit,Mathf.Infinity)) {
-				Debug.Log("hit " + hit.transform.name);
+//				Debug.Log("hit " + hit.transform.name);
 				if (isMale) {
 					maleMove(hit.transform);
 				} else {
@@ -70,15 +72,16 @@ public class CharacterScript : MonoBehaviour {
 			if (hitObj.GetComponent<FoodScript>().isMalefood) {
 				//MoveFood.
 				Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
-				//iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
 				iTween.LookTo(gameObject,iTween.Hash("looktarget",targetPos,"time",0.5f,"easetype",iTween.EaseType.linear,"oncomplete","characterMove","oncompleteparams",targetPos));
-				//characterMove(targetPos);
 			} else {
 				// Escape.
-				Vector3 escapeVec = checkEscapeVectol(targetPos);
-				escapeVec = new Vector3(escapeVec.x,1,escapeVec.z);
-				Debug.Log ("escapeVec" + escapeVec);
-				iTween.LookTo(gameObject,iTween.Hash("looktarget",escapeVec,"time",0.5f,"oncomplete","characterEscape","oncompleteparams",escapeVec));
+				if(escapeFlag){
+					escapeFlag = false;
+					Vector3 escapeVec = checkEscapeVectol(targetPos);
+					escapeVec = new Vector3(escapeVec.x,1,escapeVec.z);
+					Debug.Log ("escapeVec" + escapeVec);
+					iTween.LookTo(gameObject,iTween.Hash("looktarget",escapeVec,"time",0.5f,"oncomplete","characterEscape","oncompleteparams",escapeVec));
+				}	
 			}
 		} 
 	}
@@ -88,11 +91,17 @@ public class CharacterScript : MonoBehaviour {
 		if (hitObj.tag == Const.FOOD_TAG) {
 			if (hitObj.GetComponent<FoodScript>().isMalefood) {
 				//Escape.
-
+				if(escapeFlag){
+					escapeFlag = false;
+					Vector3 escapeVec = checkEscapeVectol(targetPos);
+					escapeVec = new Vector3(escapeVec.x,1,escapeVec.z);
+					Debug.Log ("escapeVec" + escapeVec);
+					iTween.LookTo(gameObject,iTween.Hash("looktarget",escapeVec,"time",0.5f,"oncomplete","characterEscape","oncompleteparams",escapeVec));
+				}
 			} else {
 				//MoveFood.
 				Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
-				iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
+				iTween.LookTo(gameObject,iTween.Hash("looktarget",targetPos,"time",0.5f,"easetype",iTween.EaseType.linear,"oncomplete","characterMove","oncompleteparams",targetPos));
 			}
 		} 
 	}
@@ -100,46 +109,50 @@ public class CharacterScript : MonoBehaviour {
 	void characterMove(Vector3 pos)
 	{
 		_animationController.run();
-		iTween.MoveTo(gameObject,iTween.Hash("position",pos,"speed",5,"easetype",iTween.EaseType.linear));
+		iTween.MoveTo(gameObject,iTween.Hash("position",pos,"speed",5,"easetype",iTween.EaseType.linear,"oncomplete","endRun"));
 	}
 
 	void characterEscape(Vector3 pos)
 	{
 		_animationController.escapeRun();
 		pos = pos;
-		iTween.MoveTo(gameObject,iTween.Hash("position",-pos,"speed",5,"easetype",iTween.EaseType.linear));
+		iTween.MoveTo(gameObject,iTween.Hash("position",pos,"speed",5,"easetype",iTween.EaseType.linear,"oncomplete","endRun"));
 	} 
-
-	void OnTriggerEnter(Collider col) {
-		if (col.tag == Const.WALL_TAG) {
-			iTween.Stop();
-		}
-	}
 
 	Vector3 checkEscapeVectol(Vector3 targetPos)
 	{
 		float x = Mathf.Abs(transform.position.x) - Mathf.Abs(targetPos.x);
 		float z = Mathf.Abs(transform.position.z) - Mathf.Abs(targetPos.z);
 		Vector3 escapeVec = Vector3.zero;
-		if (x != 0) {
+		if (x > 0.5f) {
 			//X.
 			if (transform.position.x < targetPos.x) {
 				//LeftEscape
-				escapeVec = Vector3.left;
+				escapeVec = new Vector3(-10,1,transform.position.z);
+				Debug.Log("left");
 			} else {
 				//RIghtEscape
-				escapeVec = Vector2.right;
+				escapeVec = new Vector3(10,1,transform.position.z);
+				Debug.Log("right");
 			}
-		} else if (z != 0) {
+		} else if (z > 0.5f) {
 			//Z.
 			if (transform.position.z < targetPos.z) {
 				//DownEsxape.
-				escapeVec = Vector3.down;
+				Debug.Log("down");
+				escapeVec = new Vector3(transform.position.x,1,-10);
 			} else {
 				//TopEscape.
-				escapeVec = Vector3.forward;
+				Debug.Log("top");
+				escapeVec = new Vector3(transform.position.x,1,10);
 			}
 		}
 		return escapeVec;
 	}
+
+	void endRun()
+	{
+		_animationController.idle();
+	}
+
 }

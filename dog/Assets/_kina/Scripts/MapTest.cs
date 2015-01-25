@@ -62,11 +62,12 @@ public class MapTest : MonoBehaviour {
 			rightWall.transform.parent = stage.transform;
 
 		}
-		GameObject player = GameObject.FindWithTag(playerTag);
-		malePlayer = player;
+//		GameObject player = GameObject.FindWithTag(playerTag);
+//		malePlayer = player;
 		Vector3 boxPos = boxs[0].transform.position;
 		malePlayer.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
-
+		Vector3 femalePos = boxs[16].transform.position;
+		femalePlayer.transform.position = new Vector3(femalePos.x,1,femalePos.z);
 
 
 		for (int w = 0; w < walls.Length; w++) {
