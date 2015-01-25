@@ -84,7 +84,91 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: pelvis
+        weight: 1
+      - path: pelvis/Backleg_L
+        weight: 1
+      - path: pelvis/Backleg_L/Backleg_L02
+        weight: 1
+      - path: pelvis/Backleg_R
+        weight: 1
+      - path: pelvis/Backleg_R/Backleg_R02
+        weight: 1
+      - path: pelvis/spine01
+        weight: 1
+      - path: pelvis/spine01/spine02
+        weight: 1
+      - path: pelvis/spine01/spine02/Frontleg_L
+        weight: 1
+      - path: pelvis/spine01/spine02/Frontleg_L/Frontleg_L02
+        weight: 1
+      - path: pelvis/spine01/spine02/Frontleg_R
+        weight: 1
+      - path: pelvis/spine01/spine02/Frontleg_R/Frontleg_R02
+        weight: 1
+      - path: pelvis/spine01/spine02/Head
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Ear_L
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Ear_L/Ear_L02
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Ear_R
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Ear_R/Ear_R02
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/joint1
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/joint2
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Mouth
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Mouth/Chin
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Mouth/Chin/Chin02
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Mouth/Nose
+        weight: 1
+      - path: pelvis/spine01/spine02/Head/Mouth/Nose/Nose02
+        weight: 1
+      - path: pelvis/tail
+        weight: 1
+      - path: pelvis/tail/tail02
+        weight: 1
+      - path: SM_Dog
+        weight: 1
+      - path: SM_mayu_L
+        weight: 1
+      - path: SM_mayu_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
