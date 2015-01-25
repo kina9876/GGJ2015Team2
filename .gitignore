@@ -10,3 +10,14 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+dog/Assembly-CSharp-vs.csproj
+dog/Assembly-CSharp.csproj
+dog/dog-csharp.sln
+dog/dog.sln
+dog/dog.userprefs
+dog/Assembly-UnityScript-Editor-vs.unityproj
+dog/Assembly-UnityScript-Editor.unityproj
+dog/Assembly-UnityScript-firstpass-vs.unityproj
+dog/Assembly-UnityScript-firstpass.unityproj
+dog/Assembly-CSharp-firstpass-vs.csproj
+dog/Assembly-CSharp-firstpass.csproj

@@ -14,31 +14,60 @@ public class MapTest : MonoBehaviour {
 	public GameObject femalePlayer;
 	public float moveTime;
 	public int[] walls;
+	public GameObject food;
+	public GameObject[] houses;
+	public GameObject insFood;
 
 	// Use this for initialization
 	void Start () {
 		GameObject stage = GameObject.Find("Stage");
 		boxs = new GameObject[tileCount * tileCount];
+
+		houses = new GameObject[4];
+		for (int i = 0; i < houses.Length;i++) {
+			houses[i] = Resources.Load(Const.HOUSE_NAME + (i+1)) as GameObject;
+		}
+
 		for (int i = 0; i < tileCount; i++) {
 			for (int x = 0; x < tileCount; x++) {
 				GameObject  tile = Instantiate(box,startPosition,Quaternion.identity) as GameObject;
 				boxs[createCount] = tile;
 				tile.transform.position = new Vector3(
 					startPosition.x + box.transform.localScale.x * i,
-					0,
+					0.5f,
 					startPosition.z + box.transform.localScale.z * x);
 				tile.transform.parent = stage.transform;
 				tile.transform.name = "box" + createCount;
 				createCount++;
 			}
 		}
+		int surWallCount = (tileCount * (tileCount + 1)) + 4;
+		Debug.Log("wall : " + surWallCount);
+		for (int w = 0; w < tileCount; w++) {
+			GameObject underWall = Instantiate(houses[0]) as GameObject;
+			GameObject topWall = Instantiate(houses[0]) as GameObject;
+			GameObject leftWall = Instantiate(houses[0]) as GameObject;
+			GameObject rightWall = Instantiate(houses[0]) as GameObject;
+			underWall.transform.position = boxs[0].transform.position + new Vector3(w,0.5f,-1);
+			topWall.transform.position = boxs[tileCount -1].transform.position + new Vector3(w,0.5f,1);
+			leftWall.transform.position = boxs[0].transform.position + new Vector3(-1,0.5f,w);
+			rightWall.transform.position = boxs[boxs.Length - 1].transform.position + new Vector3 (1,0.5f,-w);
+			underWall.transform.parent = stage.transform;
+			topWall.transform.parent = stage.transform;
+			leftWall.transform.parent = stage.transform;
+			rightWall.transform.parent = stage.transform;
+
+		}
 		GameObject player = GameObject.FindWithTag(playerTag);
 		malePlayer = player;
 		Vector3 boxPos = boxs[0].transform.position;
 		malePlayer.transform.position = new Vector3(boxPos.x,1,boxPos.z); 
 
+
+
 		for (int w = 0; w < walls.Length; w++) {
-			GameObject wall = Instantiate(Resources.Load(Const.WALL_PATH))as GameObject;
+			int num = Random.Range(0,houses.Length);
+			GameObject wall = Instantiate(houses[Random.Range(0,houses.Length)]) as GameObject;
 			Vector3 wallPos = boxs[walls[w]].transform.position;
 			wallPos = new Vector3(wallPos.x,1,wallPos.z);
 			wall.transform.position = wallPos;
@@ -55,8 +84,11 @@ public class MapTest : MonoBehaviour {
 			if(Physics.Raycast(ray,out hit))
 			{
 /*				malePlayer.GetComponent<CharacterScript>()*/
-				Vector3 newPos = new Vector3(hit.transform.position.x,1,hit.transform.position.z); 
-
+				Vector3 newPos = new Vector3(hit.transform.position.x,2,hit.transform.position.z); 
+				if (insFood == null) {
+					insFood = Instantiate(food) as GameObject;
+				}
+				insFood.transform.position = newPos;
 			}
 		}
 	}
