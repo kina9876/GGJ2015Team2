@@ -13,9 +13,12 @@ public class CharacterScript : MonoBehaviour {
 	public Vector3[] vectols;
 	public bool isMale;
 
+	public CharacterAnimationController _animationController;
+
 
 	// Use this for initialization
 	void Start () {
+		_animationController.idle();
 		vectols = new Vector3[4];
 	}
 
@@ -96,11 +99,13 @@ public class CharacterScript : MonoBehaviour {
 
 	void characterMove(Vector3 pos)
 	{
+		_animationController.run();
 		iTween.MoveTo(gameObject,iTween.Hash("position",pos,"speed",5,"easetype",iTween.EaseType.linear));
 	}
 
 	void characterEscape(Vector3 pos)
 	{
+		_animationController.escapeRun();
 		pos = pos;
 		iTween.MoveTo(gameObject,iTween.Hash("position",-pos,"speed",5,"easetype",iTween.EaseType.linear));
 	} 

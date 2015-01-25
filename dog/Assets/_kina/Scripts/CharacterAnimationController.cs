@@ -3,17 +3,27 @@ using System.Collections;
 
 public class CharacterAnimationController : MonoBehaviour {
 
-	void idle()
+	public void idle()
 	{
 
 	}
 
-	void run()
+	public void run()
 	{
 
 	}
 
-	void eat()
+	public void escapeRun()
+	{
+
+	}
+
+	public void eat()
+	{
+
+	}
+
+	public void end()
 	{
 
 	}
