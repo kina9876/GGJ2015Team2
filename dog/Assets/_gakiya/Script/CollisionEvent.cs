@@ -23,5 +23,10 @@ public class CollisionEvent : MonoBehaviour {
 
 			clearManager.SendMessage("Clear");
 		}
+
+		if (col.gameObject.tag == Const.WALL_TAG) {
+			//iTween.Stop();
+			transform.SendMessage("endRun");
+		}
 	}
 }
