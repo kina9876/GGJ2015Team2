@@ -17,7 +17,6 @@ public class CharacterScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vectols = new Vector3[4];
-
 	}
 
 	void Update () {
@@ -68,10 +67,13 @@ public class CharacterScript : MonoBehaviour {
 			if (hitObj.GetComponent<FoodScript>().isMalefood) {
 				//MoveFood.
 				Vector3 targetPos = new Vector3(hitObj.position.x,1,hitObj.position.z);
-				iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
+				//iTween.MoveTo(gameObject,iTween.Hash("position",targetPos,"speed",5,"easetype",iTween.EaseType.linear));
+				iTween.LookTo(gameObject,iTween.Hash("looktarget",targetPos,"time",0.5f,"easetype",iTween.EaseType.linear,"oncomplete","characterMove","oncompleteparams",targetPos));
+				//characterMove(targetPos);
 			} else {
 				// Escape.
-
+				Vector3 escapeVec = checkEscapeVectol(targetPos);
+				//iTween.LookTo(gameObject,iTween.Hash("looktarget",-targetPos,"time",0.5f,"easetype",iTween.EaseType.linear,"oncomplete","characterEscape","oncompleteparams",targetPos));
 			}
 		} 
 	}
@@ -94,4 +96,17 @@ public class CharacterScript : MonoBehaviour {
 	{
 		iTween.MoveTo(gameObject,iTween.Hash("position",pos,"speed",5,"easetype",iTween.EaseType.linear));
 	}
+
+	void characterEscape(Vector3 pos)
+	{
+		iTween.MoveTo(gameObject,iTween.Hash("position",-pos,"speed",5,"easetype",iTween.EaseType.linear));
+	} 
+
+	Vector3 checkEscapeVectol(Vector3 targetPos)
+	{
+		Vector3 checkVec = transform.position - targetPos;
+		Debug.Log(checkVec);
+		return checkVec;
+	}
+
 }
